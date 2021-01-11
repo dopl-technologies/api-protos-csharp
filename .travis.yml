@@ -1,0 +1,23 @@
+language: csharp
+mono: none
+dotnet: 3.1
+before_install:
+- sudo apt-get -y install libpam0g-dev
+install:
+- dotnet restore
+script:
+- dotnet build -c Release
+before_deploy:
+- dotnet pack -c Release
+deploy:
+  skip_cleanup: true
+  provider: script
+  script: dotnet nuget push ./bin/Release/DOPLTechProtos.*.nupkg  --api-key $NUGET_API_KEY
+    -s https://api.nuget.org/v3/index.json
+  on:
+    branch: main
+    tags: true
+    condition: "$TRAVIS_OS_NAME = linux"
+env:
+  global:
+    secure: PdTc6mEGn0lKxL0mfi1MOmWoJMneqoLQROWIjfAj44Dv7p2cKIQiiBVuTd6svqzZ1xg6rUCvKWQ3C8o4ZL4vdfynNEgGOci4HtBCkAoi9j4257HthCjY+u9u6JEesiBGMViqA2NphZE62brArKOKkT2b7nqaqSFkP5MM2YpxWr3zrX9ECBnIaA26TIrXA8IhVrmV3HPgI1KjRD+F1FFi7oknZDstVOQTpPMGkn6VrNHkEnCyYjIoL0ghNw9rCyy2mnPYSxaesYZ4vEofRsosM5I+/+ZPmi2Du8dV45mVid4qgLfqq8iq3NVMoTbLyzQizEzyAG3Kv/kM8UYe9hURRHOmooR9WE1tuHBYXEKQDKaOoIwmCzmfWMSMx44Nhu85F8pLFIj3Y4sureO7fjgKFjxWHOLilF915QOxsIa0MQipu6sIxOOutvfQa8OCAeIQGuyrdPx11S2D3KmNgqgjJ+QOcRvEVxK/F4VmMyPNI14CCR1uvFbmHgHMHqavF17PKsH6nSpmisxh29mKe3Wnr0ZRfcqfR7DCJ6hTPvBLNpiCzxGHPhgqepjZjYF0TxNsE04YXkfdfBH27aQP/M9iWd46oV8reV/T0z/YWT/sNhtzjWFqiA1MjmR9v2gicRIE+QOQq+wW40u1HmTZwia7FP21NvHLNKKaLYMeTvTsBPA=
