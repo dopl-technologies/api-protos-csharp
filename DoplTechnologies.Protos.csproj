@@ -1,12 +1,12 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <RootNamespace>DOPLTech</RootNamespace>
+    <RootNamespace>DoplTechnologies.Protos</RootNamespace>
     <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
-    <PackageId>DOPLTechProtos</PackageId>
-    <Version>0.3.0</Version>
+    <PackageId>DoplTechnologies.Protos</PackageId>
+    <Version>0.1.0</Version>
     <Authors>Ryan James</Authors>
-    <Company>DOPL Technologies</Company>
+    <Company>Dopl Technologies</Company>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Google.Protobuf" Version="3.8.0" />
